@@ -1,0 +1,4 @@
+let input = require('fs').readFileSync('example.txt').toString();
+
+console.log(`${input}??!`);
+console.log(input+"??!");
