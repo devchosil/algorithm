@@ -1,14 +1,16 @@
-const input = require('fs').readFileSync('example.txt').toString()*1;
-let num = 1;
-let range = 1;
+const input = require('fs').readFileSync('example.txt').toString();
 
-function solution (N) {
-  while(num<N) {
-    num += 6*range;
-    range++;
-  }
+let num = input[0]*1;
+let fiveBag = Math.floor(num/5);
 
-  return console.log(range);
+while(num>0) {
+  num -= fiveBag*5;
 }
 
-solution(input);
+if(num%3 === 0) {
+  num += 1;
+} else {
+  num = -1;
+}
+
+console.log(num);

@@ -4,12 +4,15 @@
 // 입력: 첫째 줄에 N(1 ≤ N ≤ 1,000,000,000)이 주어진다.
 // 출력: 입력으로 주어진 방까지 최소 개수의 방을 지나서 갈 때 몇 개의 방을 지나는지 출력한다.
 
+//1
 const input = require('fs').readFileSync('example.txt').toString()*1;
-let num = 1;
-let range = 1;
+let num = 1;     //첫번째 숫자 
+let range = 1;   //범위
+
+//범위1: 1,범위2: 2~7, 범위3: 8~19 ...
 
 function solution (N) {
-  while(num<N) {
+  while(num<N) {    //입력값보다 range이 작을때
     num += 6*range;
     range++;
   }
@@ -18,3 +21,19 @@ function solution (N) {
 }
 
 solution(input);
+
+
+//2 틀린 답 - +1되서 나옴..
+
+// const input = Number(require('fs').readFileSync('/dev/stdin'));
+// let num = 1; let range = 1;
+
+// function solution (N) {
+//   while(true) {
+//     num += 6*range;     1, 1+6, 1+6+12,
+//     range++;
+//     if(num>N) break;    //입력값보다 숫자가 더 커질때 while문이 멈추기때문에 range가 원래답보다 +1됨
+//   }
+//   return console.log(range);
+// }
+// solution(input);
