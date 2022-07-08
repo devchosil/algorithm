@@ -1,21 +1,21 @@
-let N = require('fs').readFileSync('example.txt').toString().trim()*1;
+let input = require('fs').readFileSync('example.txt').toString().trim().split(' ');
 
-function solution(n) {
-    let count = 0;
-    for(i=1;i<=n;i++) {
-        let hundreds = Math.floor(i/100);
-        let tens = Math.floor(i/10)%10;
-        let ones = i%10;
+//1. 아무것도 안쓰면 0이 나와야 하는데 1이 나옴
+//console.log(input.length);
 
-        if(i<100) {   //n이 한자리수 or 두자리수일 때
-            count++;
-        } else if(i>=100 && i<1000) {
-            if(hundreds-tens === tens-ones) {
-                count++;
-            }
-        }
-    }
-    console.log(count);
-}
+//2. 이것도 
+// let count = 0;
 
-solution(N);
+// for(i=0; i<input.length; i++) {
+//     if(input[i] === ' ') {
+//         count++;
+//     }
+// }
+
+// if(input[0]===' ' && input[input.length]===' ') {
+//     count--;
+// } else if(input[0]!==' ' && input[input.length]!==' ') {
+//     count++;
+// }
+
+// console.log(count);
