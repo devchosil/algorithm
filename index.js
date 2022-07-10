@@ -1,21 +1,16 @@
-let input = require('fs').readFileSync('example.txt').toString().trim().split(' ');
+let input = require('fs').readFileSync('example.txt').toString().trim();
 
-//1. 아무것도 안쓰면 0이 나와야 하는데 1이 나옴
-//console.log(input.length);
+const alphabet = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ'];
 
-//2. 이것도 
-// let count = 0;
+let result = 0;
+let count = 0;
 
-// for(i=0; i<input.length; i++) {
-//     if(input[i] === ' ') {
-//         count++;
-//     }
-// }
+for(i=0;i<input.length;i++) {
 
-// if(input[0]===' ' && input[input.length]===' ') {
-//     count--;
-// } else if(input[0]!==' ' && input[input.length]!==' ') {
-//     count++;
-// }
+  for(j=0;j<alphabet.length;j++) {
+    alphabet[j].includes(input[i]) ? count=j+3 : 0
+  }
+  result += count;
+}
 
-// console.log(count);
+console.log(result);
