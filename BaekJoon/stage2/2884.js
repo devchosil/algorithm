@@ -19,5 +19,7 @@ let H =input[0]*1; let M =input[1]*1;
 
 // console.log(`${H} ${M}`);
 
+//1. 0~45분 사이일 때 1) 0시일때, 2) 0시가 아닐때
 if(M>=0 && M<45) H==0 ? console.log(`23 ${M+15}`) : console.log(`${H-1} ${M+15}`)
+//2. 45~60분 사이일때
 if(M>=45 && M<60) console.log(`${H} ${M-45}`)

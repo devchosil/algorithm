@@ -1,10 +1,1 @@
-9
-abba
-abac
-abcb
-abaa
-aabaa
-aabba
-abacc
-ababab
-abbcbb
+55

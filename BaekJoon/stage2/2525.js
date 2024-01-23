@@ -4,6 +4,7 @@
 let input = require('fs').readFileSync('example.txt').toString().trim().split('\n');
 
 //1
+//시작시각의 분 + 소요시간(분)을 먼저 더해준 후에 풀이!
 let hour = input[0].split(' ')[0]*1;
 let minute = input[0].split(' ')[1]*1;
 let time = input[1]*1;

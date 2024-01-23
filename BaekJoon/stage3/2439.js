@@ -8,21 +8,20 @@
 
 //1 repeat메소드 사용
 //'문자'.repeat(count) 주어진 횟수만큼 문자 반복
-// const input = require('fs').readFileSync('example.txt').toString()*1;
+const input = require('fs').readFileSync('example.txt').toString()*1;
 
-// for(i=1;i<=input;i++) {
+for(i=1;i<=input;i++) {
+  console.log(' '.repeat(input-i)+'*'.repeat(i));
+}
 
-//   console.log(' '.repeat(input-i)+'*'.repeat(i));
-// }
+//2 배열로 만들고, 다시 문자열로 반환
+// Array -> join 사용
+let arr = new Array(input).fill(' ');
 
-// //2 배열로 만들고, 다시 문자열로 반환
-// // Array -> join 사용
-// let arr = new Array(input).fill(' ');
-
-// for(i=input-1;i>=0;i--) {
-//   arr[i] = '*';   //점점 쌓임..
-//   console.log(arr.join(''));
-// }
+for(i=input-1;i>=0;i--) {
+  arr[i] = '*';   //점점 쌓임..
+  console.log(arr.join(''));
+}
 
 // //3 for문 사용
 let blank = '';
@@ -38,4 +37,13 @@ for(i=0; i<input; i++) {
   blank='';             //줄바뀌면(i가 하나 늘어나면) blank 리셋
 }
 
+//4 blank랑 star를 따로 반복문으로 돌리고, 합치기
+let star = '*';
+let result = '';
 
+for(i=0;i<input;i++) {
+  let blank = ' '.repeat(input-i-1);
+  result = blank+star;
+  star += '*';
+  console.log(result);
+}
