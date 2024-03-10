@@ -14,7 +14,10 @@
 //     "\n"
 //   );
 
-let input = '2\n10 8 17\n0 0\n1 0\n1 1\n4 2\n4 3\n4 5\n2 4\n3 4\n7 4\n8 4\n9 4\n7 5\n8 5\n9 5\n7 6\n8 6\n9 6\n10 10 1\n5 5'.split('\n');
+let input =
+  "2\n10 8 17\n0 0\n1 0\n1 1\n4 2\n4 3\n4 5\n2 4\n3 4\n7 4\n8 4\n9 4\n7 5\n8 5\n9 5\n7 6\n8 6\n9 6\n10 10 1\n5 5".split(
+    "\n"
+  );
 
 // 1. DFS 메소드 정의하기
 // 2. 그래프 생성, 반복하기
@@ -22,18 +25,22 @@ let input = '2\n10 8 17\n0 0\n1 0\n1 1\n4 2\n4 3\n4 5\n2 4\n3 4\n7 4\n8 4\n9 4\n
 // 그래프 만들 때, 배추가 심겨있는 위치는 1로 표시
 // 가로축은 y로 세로축은 x로 표시 (배열로 만드니까)
 
+// 처음 이해를 못한 포인트
+// 1. 인접 지역들(연결된 부분)을 묶음으로 보고 모두 연결해서 방문처리를 해줌
+// 2. 반복문이 돌아가면서 해당 지점에 도달 했을 때 이미 방문처리돼어서 false처리-> count에 반영안되도록 만듬
 function dfs(graph, n, m, x, y) {
   // 주어진 범위를 벗어나면 종료
-  if(x<0 || y<0 || x>=n || y>=m) return false;
+  if (x < 0 || y < 0 || x >= n || y >= m) return false;
 
-  if(graph[x][y]===1) { // 배추가 심겨져 있다면
-    graph[x][y] = -1 // -1로 방문표기!!
+  if (graph[x][y] === 1) {
+    // 배추가 심겨져 있다면
+    graph[x][y] = -1; // -1로 방문표기!!
 
     // 인접 위치도 들른 후(상하좌우), true 반환해주기
-    dfs(graph, n, m, x-1, y);
-    dfs(graph, n, m, x+1, y);
-    dfs(graph, n, m, x, y-1);
-    dfs(graph, n, m, x, y+1);
+    dfs(graph, n, m, x - 1, y);
+    dfs(graph, n, m, x + 1, y);
+    dfs(graph, n, m, x, y - 1);
+    dfs(graph, n, m, x, y + 1);
     return true;
   }
 
@@ -45,31 +52,30 @@ let testCases = Number(input[0]);
 // input[0]은 테스트케이스 수, input[1]은 첫번째 케이스 n,m,k
 // input[2]부터는 첫번째 케이스의 위치
 let line = 1; // index 표기
-while(testCases--) {
+while (testCases--) {
   let answer = 0;
 
-  let [m,n,k] = input[line].split(' ').map(Number);
+  let [m, n, k] = input[line].split(" ").map(Number);
   let graph = [];
 
-  for(let i=0;i<n;i++) {
+  for (let i = 0; i < n; i++) {
     let horizon = Array(m);
     graph.push(horizon);
   }
 
-  for(let i=line+1;i<=line+k;i++) {
-    const [x,y] = input[i].split(' ').map(Number);
+  for (let i = line + 1; i <= line + k; i++) {
+    const [x, y] = input[i].split(" ").map(Number);
     graph[y][x] = 1;
   }
 
-  for(let i=0;i<n;i++) {
-    for(let j=0;j<m;j++) {
-      if(dfs(graph,n,m,i,j)) answer++;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (dfs(graph, n, m, i, j)) answer++;
     }
   }
-  line += k+1;
+  line += k + 1;
   console.log(answer);
 }
-
 
 // 강의 풀이
 // function dfs(graph, n, m, x, y) { // 깊이 우선 탐색(DFS) 수행
@@ -99,7 +105,7 @@ while(testCases--) {
 //   let [m, n, k] = input[line].split(' ').map(Number);
 
 //   // 그래프 정보
-//   let graph = []; 
+//   let graph = [];
 //   for (let i = 0; i < n; i++) {
 //     graph[i] = new Array(m);
 //   }
