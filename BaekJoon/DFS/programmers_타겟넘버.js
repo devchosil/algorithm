@@ -20,7 +20,8 @@ const target = 4;
 // 왜 dfs지..? -> 타겟 넘버가 나올 떄까지 계속 조합을 파고들기
 // 모든 수가 음수있을수는 없다. -> 음수가 존재할 수 있는 경우의 수는 모든 정수-1
 
-// 탈출조건: numbers array 다돌았을때
+// 탈출조건: numbers array 다돌았을 때
+// answer + 1 조건: numbers array 다돌고 + target이 합계와 같을 때
 
 function solution (numbers,target) {
     let answer = 0;
@@ -47,3 +48,5 @@ function solution (numbers,target) {
 
     return answer;
 }
+
+console.log(solution(numbers,target));
