@@ -14,15 +14,12 @@
 // 1. 트리란 사이클이 없는 연결 요소 -> 트리의 정의에 따라 dfs를 이용해 트리의 개수 계산
 // dfs 수행과정에서 인접 노드가 이미 방문한 노드라면 사이클임
 
-// let input =
-//   "6 3\n1 2\n2 3\n3 4\n6 5\n1 2\n2 3\n3 4\n4 5\n5 6\n6 6\n1 2\n2 3\n1 3\n4 5\n5 6\n6 4\n0 0\n".split(
-//     "\n"
-//   );
-
 let input =
-  "6 3\n1 2\n2 3\n3 4\n0 0\n".split(
+  "6 3\n1 2\n2 3\n3 4\n6 5\n1 2\n2 3\n3 4\n4 5\n5 6\n6 6\n1 2\n2 3\n1 3\n4 5\n5 6\n6 4\n0 0\n".split(
     "\n"
   );
+
+// let input = "6 3\n1 2\n2 3\n3 4\n0 0\n".split("\n");
 
 // 정점 n, 간선 m, m개의 줄에 간선 나타내는 두 정수
 
@@ -32,12 +29,13 @@ function isCycle(x, prev) {
   visited[x] = true;
   // 다음 노드(인접 노드)를 하나씩 확인하며
   for (let y of graph[x]) {
-  if (!visited[y]) { // 다음 노드를 아직 방문하지 않았다면
-  // 다음 노드 기준으로 사이클이라면
-  if (isCycle(y, x)) return true; // 사이클 발생
-  }
-  // 방문한 적 있는 노드인데, 직전 노드가 아니라면(무방향 그래프)
-  else if (y != prev) return true;
+    if (!visited[y]) {
+      // 다음 노드를 아직 방문하지 않았다면
+      // 다음 노드 기준으로 사이클이라면
+      if (isCycle(y, x)) return true; // 사이클 발생
+    }
+    // 방문한 적 있는 노드인데, 직전 노드가 아니라면(무방향 그래프)
+    else if (y != prev) return true;
   }
   return false;
 }
@@ -45,29 +43,31 @@ function isCycle(x, prev) {
 let line = 0;
 let testCase = 1;
 while (true) {
-  let [n, m] = input[line].split(' ').map(Number); 
+  let [n, m] = input[line].split(" ").map(Number);
   if (n == 0 && m == 0) break; // 노드의 개수(N)와 간선의 개수(M)
   graph = []; // 트리 정보 입력받기
   for (let i = 1; i <= n; i++) graph[i] = [];
   for (let i = 1; i <= m; i++) {
-    let [x, y] = input[line + i].split(' ').map(Number);
+    let [x, y] = input[line + i].split(" ").map(Number);
     graph[x].push(y);
     graph[y].push(x);
   }
   visited = new Array(n + 1).fill(false); // 방문 처리 배열
   let cnt = 0; // 그래프 내 트리의 개수
-  for (let i = 1; i <= n; i++) { // 하나씩 노드를 확인하며
-    console.log("visited[i]",i,visited[i]);
-    if (!visited[i]) { // 연결 요소이면서
-      console.log(i, isCycle(i, 0));
-      if (!isCycle(i, 0)) cnt++;// 사이클이 아니라면 트리이므로, 카운트하기
+  for (let i = 1; i <= n; i++) {
+    // 하나씩 노드를 확인하며
+    // console.log("visited[i]", i, visited[i]);
+    if (!visited[i]) {
+      // 연결 요소이면서
+      // console.log(i, isCycle(i, 0));
+      if (!isCycle(i, 0)) cnt++; // 사이클이 아니라면 트리이므로, 카운트하기
     }
   }
 
-  // if (cnt == 0) console.log(`Case ${testCase}: No trees.`);
-  // else if (cnt == 1) console.log(`Case ${testCase}: There is one tree.`);
-  // else console.log(`Case ${testCase}: A forest of ${cnt} trees.`);
-  
+  if (cnt == 0) console.log(`Case ${testCase}: No trees.`);
+  else if (cnt == 1) console.log(`Case ${testCase}: There is one tree.`);
+  else console.log(`Case ${testCase}: A forest of ${cnt} trees.`);
+
   line += m + 1; // 다음 테스트 케이스로 이동
   testCase++;
 }
